@@ -9,8 +9,7 @@ package CasoB_Simulador_Strategy;
  *
  * @author eadan
  */
-public class Main {
-    
+public class Main {  
     public static void main(String[] args) {
         SimuladorGeneral[] simuladores={new SimuladorCola(), new SimuladorPila()};
         for (SimuladorGeneral simulador : simuladores) {
