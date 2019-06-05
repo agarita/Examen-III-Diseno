@@ -5,17 +5,21 @@
  */
 package CasoC_MiGarage_Command.Comandos;
 
+import CasoC_MiGarage_Command.Receptores.DispositivoReceptor;
+
 /**
  *
  * @author eadan
  */
 public class Subir extends Comando{
-    
+    public Subir(DispositivoReceptor receptor) {
+        super.receptor=receptor;
+    }
     
     @Override
     public void ejecutar() {
-        receptor.subir();
         System.out.println("Subiendo dispositivo");
+        receptor.subir();
     }
     
 } 

@@ -13,5 +13,6 @@ import CasoC_MiGarage_Command.Receptores.DispositivoReceptor;
  */
 public abstract class Comando {
     public DispositivoReceptor receptor;
+    
     public abstract void ejecutar();
 }

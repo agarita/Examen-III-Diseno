@@ -5,17 +5,25 @@
  */
 package CasoC_MiGarage_Command.Comandos;
 
+import CasoC_MiGarage_Command.Receptores.AC;
+import CasoC_MiGarage_Command.Receptores.DispositivoReceptor;
+
 /**
  *
  * @author eadan
  */
 public class Activar extends Comando{
+
+    public Activar(DispositivoReceptor receptor) {
+        super.receptor=receptor;
+    }
     
     
     @Override
     public void ejecutar() {
-        receptor.activar();
         System.out.println("Activando dispositivo");
+        receptor.activar();
+        
     }
     
 } 

@@ -5,17 +5,21 @@
  */
 package CasoC_MiGarage_Command.Comandos;
 
+import CasoC_MiGarage_Command.Receptores.DispositivoReceptor;
+
 /**
  *
  * @author eadan
  */
 public class Desactivar extends Comando{
-    
+    public Desactivar(DispositivoReceptor receptor) {
+        super.receptor=receptor;
+    }
     
     @Override
     public void ejecutar() {
-        receptor.desactivar();
         System.out.println("Desactivando dispositivo");
+        receptor.desactivar();
     }
     
 }

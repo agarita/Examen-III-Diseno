@@ -14,6 +14,8 @@ public class AC extends DispositivoReceptor {
     @Override
     public void activar() {
         intensidad=20;
+        encendido=true;
+        System.out.println("AC encendido");
     }
 
 
