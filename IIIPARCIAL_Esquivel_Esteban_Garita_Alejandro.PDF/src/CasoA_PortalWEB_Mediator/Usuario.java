@@ -13,14 +13,12 @@ import java.util.ArrayList;
  */
 public class Usuario implements Colega{
     
-    public int id;
     public String nombre;
     public MediadorUsuario mediador;
     public ArrayList<Usuario> subscriptores;
     public ArrayList<Publicacion> publicaciones;
     
-    public Usuario(int id, String nombre, MediadorUsuario mediadorUsuario){
-        this.id = id;
+    public Usuario(String nombre, MediadorUsuario mediadorUsuario){
         this.nombre = nombre;
         mediador = mediadorUsuario;
         subscriptores = new ArrayList<>();
@@ -47,8 +45,7 @@ public class Usuario implements Colega{
 
     @Override
     public Publicacion notificacion(Publicacion pub) {
-        System.out.println(pub.nombreUsuario + ": ");
-        System.out.println(pub.contenido);
+        System.out.println(pub.nombreUsuario + ": " + pub.contenido);
         for (int i = 0; i < pub.comentarios.size(); i++) {
             Comentario c = pub.comentarios.get(i);
             System.out.println("\t" + c.nombreUsuario + ": " + c.contenido);
@@ -57,13 +54,13 @@ public class Usuario implements Colega{
     }
 
     @Override
-    public boolean suscribir(String suscriptor, String usuario) {
+    public boolean suscribir(String usuario) {
         return mediador.suscribir(nombre, usuario);
     }
 
     @Override
-    public boolean comentar(Publicacion pub, String comentario) {
+    public boolean comentar(String creador, String comentario) {
         Comentario c = new Comentario(comentario, nombre);
-        return mediador.comentar(pub, c);
+        return mediador.comentar(creador, c);
     }    
 }

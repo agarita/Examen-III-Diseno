@@ -26,16 +26,12 @@ public class MediadorUsuario implements Mediador{
 
     @Override
     public boolean enviar(Mensaje m) {
-        Usuario de = null, para = null;
+        Usuario para = null;
         for(int i = 0; i < listaUsuario.size(); i++){
-            if(listaUsuario.get(i).nombre.equals(m.para)){
+            if(listaUsuario.get(i).nombre.equals(m.para))
                 para = listaUsuario.get(i);
-            }
-            else if(listaUsuario.get(i).nombre.equals(m.de)){
-                de = listaUsuario.get(i);
-            }
         }
-        if(de == null || para == null)
+        if(para == null)
             return false;
         else{
             para.recibir(m);
@@ -49,6 +45,9 @@ public class MediadorUsuario implements Mediador{
             Usuario u = listaUsuario.get(i);
             if(u.nombre.equals(p.nombreUsuario)){
                 for (int j = 0; j < u.subscriptores.size(); j++) {
+                    System.out.println("\n************************");
+                    System.out.println("NOTIFICACION PARA " + u.subscriptores.get(j).nombre);
+                    System.out.println("************************");
                     u.subscriptores.get(j).notificacion(p);
                 }
                 return true;
@@ -77,7 +76,46 @@ public class MediadorUsuario implements Mediador{
     }
  
     @Override
-    public boolean comentar(Publicacion p, Comentario c) {
-        return p.comentarios.add(c);
+    public boolean comentar(String creador, Comentario c) {
+        Usuario u = null;
+        for(int i = 0; i < listaUsuario.size(); i++){
+            if(listaUsuario.get(i).nombre.equals(creador))
+                u = listaUsuario.get(i);
+        }
+        if(u == null)
+            return false;
+        else{
+            Publicacion p = u.publicaciones.get(u.publicaciones.size()-1);
+            p.comentarios.add(c);
+            return true;
+        }
+    }
+
+    @Override
+    public void feed(String usuario) {
+        System.out.println("\n*****************");
+        System.out.println("FEED DE " + usuario);
+        System.out.println("*****************");
+        ArrayList<Usuario> subscripciones = new ArrayList<>();
+        Usuario u = null;
+        for(int i = 0; i < listaUsuario.size(); i++){
+            Usuario temp = listaUsuario.get(i);
+            if(temp.nombre.equals(usuario)){
+                u = temp;
+            }
+            for (int j = 0; j < temp.subscriptores.size(); j++) {
+                if(temp.subscriptores.get(j).nombre.equals(usuario))
+                    subscripciones.add(temp);
+            }
+        }
+        if(u != null){
+            for (int i = 0; i < subscripciones.size(); i++) {
+                Usuario temp = subscripciones.get(i);
+                for (int j = 0; j < temp.publicaciones.size(); j++) {
+                    Publicacion p = temp.publicaciones.get(j);
+                    u.notificacion(p);
+                }
+            }
+        }
     }
 }

@@ -14,6 +14,6 @@ public interface Colega {
     public void recibir(Mensaje msj);
     public boolean publicar(String msj);
     public Publicacion notificacion(Publicacion pub);
-    public boolean suscribir(String sub, String u);
-    public boolean comentar(Publicacion pub, String comentario);
+    public boolean suscribir(String u);
+    public boolean comentar(String u, String comentario);
 }
