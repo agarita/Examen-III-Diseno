@@ -10,7 +10,7 @@ package CasoA_PortalWEB_Mediator;
  * @author luisg
  */
 public interface Colega {
-    public boolean enviar(Mensaje msj);
+    public boolean enviar(String msj, String para);
     public void recibir(Mensaje msj);
     public boolean publicar(String msj);
     public void notificacion(Publicacion pub);

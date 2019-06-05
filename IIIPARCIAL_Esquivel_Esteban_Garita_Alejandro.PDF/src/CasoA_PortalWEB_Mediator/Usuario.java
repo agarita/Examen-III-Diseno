@@ -28,13 +28,14 @@ public class Usuario implements Colega{
     }
     
     @Override
-    public boolean enviar(Mensaje msj) {
-        return mediador
+    public boolean enviar(String msj, String para) {
+        Mensaje m = new Mensaje(nombre, para, msj);
+        return mediador.enviar(m);
     }
 
     @Override
     public void recibir(Mensaje msj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println(msj.de + " dice: " + msj.mensaje);
     }
 
     @Override
