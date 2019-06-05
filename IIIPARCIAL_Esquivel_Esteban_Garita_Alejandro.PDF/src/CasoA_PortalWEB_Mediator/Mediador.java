@@ -14,6 +14,6 @@ public interface Mediador {
     public boolean registrar(Usuario u);
     public boolean enviar(Mensaje m);
     public boolean publicar(Publicacion p);
+    public boolean suscribir(String sub, String u);
     public boolean comentar(Publicacion p, Comentario c);
-    public boolean suscribir(Usuario u);
 }

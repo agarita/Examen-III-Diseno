@@ -13,7 +13,7 @@ public interface Colega {
     public boolean enviar(String msj, String para);
     public void recibir(Mensaje msj);
     public boolean publicar(String msj);
-    public void notificacion(Publicacion pub);
-    public boolean suscribir(Usuario u);
+    public Publicacion notificacion(Publicacion pub);
+    public boolean suscribir(String sub, String u);
     public boolean comentar(Publicacion pub, String comentario);
 }

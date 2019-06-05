@@ -46,23 +46,24 @@ public class Usuario implements Colega{
     }
 
     @Override
-    public void notificacion(Publicacion pub) {
+    public Publicacion notificacion(Publicacion pub) {
         System.out.println(pub.nombreUsuario + ": ");
         System.out.println(pub.contenido);
         for (int i = 0; i < pub.comentarios.size(); i++) {
             Comentario c = pub.comentarios.get(i);
             System.out.println("\t" + c.nombreUsuario + ": " + c.contenido);
         }
+        return pub;
     }
 
     @Override
-    public boolean suscribir(Usuario u) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean suscribir(String suscriptor, String usuario) {
+        return mediador.suscribir(nombre, usuario);
     }
 
     @Override
     public boolean comentar(Publicacion pub, String comentario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+        Comentario c = new Comentario(comentario, nombre);
+        return mediador.comentar(pub, c);
+    }    
 }

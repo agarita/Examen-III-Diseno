@@ -58,14 +58,26 @@ public class MediadorUsuario implements Mediador{
     }
 
     @Override
-    public boolean comentar(Publicacion p, Comentario c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean suscribir(String sub, String u) {
+        Usuario subscriptor = null, usuario = null;
+        for(int i = 0; i < listaUsuario.size(); i++){
+            if(listaUsuario.get(i).nombre.equals(u)){
+                usuario = listaUsuario.get(i);
+            }
+            else if(listaUsuario.get(i).nombre.equals(sub)){
+                subscriptor = listaUsuario.get(i);
+            }
+        }
+        if(subscriptor == null || usuario == null)
+            return false;
+        else{
+            usuario.subscriptores.add(subscriptor);
+            return true;
+        }
     }
-
+ 
     @Override
-    public boolean suscribir(Usuario u) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean comentar(Publicacion p, Comentario c) {
+        return p.comentarios.add(c);
     }
-
-    
 }
