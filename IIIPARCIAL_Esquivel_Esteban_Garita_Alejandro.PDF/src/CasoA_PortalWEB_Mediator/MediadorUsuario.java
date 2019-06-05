@@ -45,7 +45,16 @@ public class MediadorUsuario implements Mediador{
 
     @Override
     public boolean publicar(Publicacion p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for(int i = 0; i < listaUsuario.size(); i++){
+            Usuario u = listaUsuario.get(i);
+            if(u.nombre.equals(p.nombreUsuario)){
+                for (int j = 0; j < u.subscriptores.size(); j++) {
+                    u.subscriptores.get(j).notificacion(p);
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

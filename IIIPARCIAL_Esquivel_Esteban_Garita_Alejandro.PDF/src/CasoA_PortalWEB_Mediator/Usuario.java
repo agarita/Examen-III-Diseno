@@ -40,12 +40,19 @@ public class Usuario implements Colega{
 
     @Override
     public boolean publicar(String msj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Publicacion p = new Publicacion(msj, nombre);
+        publicaciones.add(p);
+        return mediador.publicar(p);
     }
 
     @Override
     public void notificacion(Publicacion pub) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println(pub.nombreUsuario + ": ");
+        System.out.println(pub.contenido);
+        for (int i = 0; i < pub.comentarios.size(); i++) {
+            Comentario c = pub.comentarios.get(i);
+            System.out.println("\t" + c.nombreUsuario + ": " + c.contenido);
+        }
     }
 
     @Override

@@ -10,5 +10,13 @@ package CasoA_PortalWEB_Mediator;
  * @author luisg
  */
 public class Comentario {
+    String contenido;
+    String nombreUsuario;
+
+    public Comentario(String contenido, String nombreUsuario) {
+        this.contenido = contenido;
+        this.nombreUsuario = nombreUsuario;
+    }
+    
     
 }
