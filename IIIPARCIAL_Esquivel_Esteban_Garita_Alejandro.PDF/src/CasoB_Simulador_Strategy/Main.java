@@ -11,4 +11,15 @@ package CasoB_Simulador_Strategy;
  */
 public class Main {
     
+    public static void main(String[] args) {
+        SimuladorGeneral[] simuladores={new SimuladorCola(), new SimuladorPila()};
+        for (SimuladorGeneral simulador : simuladores) {
+            for(int i=0;i<5;++i){
+                simulador.agregarEvento(new Evento("Ev"+(i+1), i));
+            }
+        }
+        for (SimuladorGeneral simulador : simuladores) {
+            simulador.simular();
+        }
+    }
 }
